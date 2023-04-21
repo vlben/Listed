@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Listed.UI.Models.Viewmodels.AnimeViewmodel>
+@{
+	ViewData["Title"] = "Animes";
+}
+
+<div class="text-center">
+
+	@foreach (var anime in @Model)
+	{
+		var imgsrc = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(anime.AnimeCoverArt));
+
+		<a asp-action="Anime" asp-route-animeId="@anime.AnimeId">
+			<img src="@imgsrc" class="rounded" style="height: 300px; width: 200px; margin-bottom:5px;"/>
+		</a>
+	}
+</div>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Listed.UI.Models.Viewmodels.ListOverviewModel>
+
+<div class="container">
+	@foreach (var listItem in Model)
+	{
+		ViewData["Title"] = listItem.AnimeName;
+		var imgsrc = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(listItem.AnimeCoverArt));
+
+
+		<div class="row">
+			<div class="col">
+				<img src="@imgsrc" class="rounded float-end" />
+
+			</div>
+
+			<div class="col">
+				<h1>@listItem.AnimeName</h1>
+				<h5>Episodes watched: </h5>
+				<h6>@listItem.EpisodesWatched / @listItem.AnimeEpisodes</h6>
+
+				<h5>User rating: </h5>
+				<h6>@listItem.UserRating / 10</h6>
+
+				<h5>Status: </h5>
+				<h6 class="text-capitalize fw-bold">@listItem.Status</h6>
+
+				<button class="btn btn-primary">Edit</button>
+				<a asp-controller="List" asp-action="DeleteListItem" asp-route-listItemId="@listItem.ListItemId">
+					<input type="submit" class="btn btn-danger" value="Delete" />
+				</a>
+			</div>
+		</div>
+	}
+
+
+	<a asp-controller="List" asp-action="Index">
+		<input type="submit" value="Return" class="btn btn-primary" />
+	</a>
+</div>

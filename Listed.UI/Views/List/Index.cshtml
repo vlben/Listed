@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Listed.UI.Models.Viewmodels.ListViewmodel>
+
+@{
+	ViewData["Title"] = "List";
+}
+
+<div>
+	<div>
+		<h1>
+			Added to list:
+		</h1>
+
+		@foreach (var listItem in Model.Where(modelData => modelData.Status == ""))
+		{
+			@if (listItem != null)
+			{
+				var imgsrc = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(listItem.AnimeCoverArt));
+
+				<a asp-action="Details" asp-route-listItemId="@listItem.ListItemId">
+					<img src="@imgsrc" class="rounded" style="height: 300px; width: 200px; margin-bottom:5px;" />
+				</a>
+			}
+			else
+			{
+				<h6><a asp-controller="Anime" asp-action="Index">Add</a> something to your list :)</h6>
+			}
+		}
+	</div>
+
+	<div>
+		<h1>
+			Watching:
+		</h1>
+
+		@foreach (var listItem in Model.Where(data => data.Status == "watching"))
+		{
+			var imgsrc = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(listItem.AnimeCoverArt));
+
+			<a asp-action="Details" asp-route-listItemId="@listItem.ListItemId">
+				<img src="@imgsrc" class="rounded" style="height: 300px; width: 200px; margin-bottom:5px;" />
+			</a>
+		}
+	</div>
+
+	<div>
+		<h1>
+			Completed:
+		</h1>
+
+		@foreach (var listItem in Model.Where(modelData => modelData.Status == "completed"))
+		{
+			var imgsrc = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(listItem.AnimeCoverArt));
+
+			<a asp-action="Details" asp-route-listItemId="@listItem.ListItemId">
+				<img src="@imgsrc" class="rounded" style="height: 300px; width: 200px; margin-bottom:5px;" />
+			</a>
+		}
+	</div>
+</div>

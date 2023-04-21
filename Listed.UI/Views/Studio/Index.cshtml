@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Listed.UI.Models.Viewmodels.StudioViewmodel>
+@{
+	ViewData["title"] = "Studios";
+}
+
+<div>
+	<table class="table table-striped-columns">
+		<tr>
+			<th>
+				#
+			</th>
+			<th>
+				Name:
+			</th>
+		</tr>
+		@foreach (var studio in Model)
+		{
+		<tr>
+			<th scope="row">
+				@studio.StudioId
+			</th>
+			<td>
+				<a asp-action="Studio" asp-route-studioId="@studio.StudioId">
+					@studio.StudioName
+				</a>
+			</td>
+		</tr>
+		}
+	</table>
+</div>

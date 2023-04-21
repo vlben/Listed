@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Listed.UI.Models.Viewmodels.StudioOverviewModel>
+
+<div class="text-center">
+	@foreach (var studio in @Model)
+	{
+		ViewData["title"] = studio.StudioName;
+
+		var imgsrc = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(studio.AnimeCoverArt));
+
+		<a asp-controller="Anime" asp-action="Anime" asp-route-animeId="@studio.AnimeId">
+			<img src="@imgsrc" class="rounded" style="height: 300px; width: 200px; margin-bottom:5px;" />
+		</a>
+	}
+
+	<div class="container">
+		<a asp-controller="Studio" asp-action="Index">
+			<input type="submit" value="Return" class="btn btn-danger"/>
+		</a>
+	</div>
+</div>

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Listed.UI.Models.Viewmodels.AnimeOverviewModel>
+
+<div class="container">
+	@foreach (var anime in @Model)
+	{
+		ViewData["Title"] = anime.AnimeName;
+
+		var imgsrc = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(anime.AnimeCoverArt));
+
+		<div class="row">
+			<div class="col">
+				<img src="@imgsrc" class="rounded float-end" />
+
+			</div>
+
+			<div class="col">
+				<h1>@anime.AnimeName</h1>
+				<h5>Episodes: </h5>
+				<h6>@anime.AnimeEpisodes</h6>
+
+				<h5>Studio: </h5>
+				<a asp-controller="Studio" asp-action="Studio" asp-route-studioId="@anime.StudioId"><h6>@anime.StudioName</h6></a>
+
+				<a asp-controller="Anime" asp-action="AddAnimeToList" asp-route-animeId="@anime.AnimeId">
+					<input type="submit" class="btn btn-primary" value="Add to list" />
+				</a>
+
+				<a asp-controller="Anime" asp-action="Index">
+					<input type="submit" value="Return" class="btn btn-danger"/>
+				</a>
+			</div>
+		</div>
+	}
+</div>

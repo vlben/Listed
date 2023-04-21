@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Listed.BLL.Classes.Anime" Collapsed="true">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAIAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Classes\Anime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Listed.BLL.Classes.AnimeOverview" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAIAggAAAIAABAAAAAQAAAAAAAAAgAAAAJAAAAASAA=</HashCode>
+      <FileName>Classes\AnimeOverview.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Listed.BLL.Classes.List" Collapsed="true">
+    <Position X="3.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAAAgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABA=</HashCode>
+      <FileName>Classes\List.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Listed.BLL.Classes.ListOverview" Collapsed="true">
+    <Position X="6.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAYAAAgEAAAAABAAAAAQAAAAAAAAAgAAAAIEAAACBAA=</HashCode>
+      <FileName>Classes\ListOverview.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Listed.BLL.Classes.Studio" Collapsed="true">
+    <Position X="5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAA=</HashCode>
+      <FileName>Classes\Studio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Listed.BLL.Classes.StudioOverview" Collapsed="true">
+    <Position X="1.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAIAAgAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAASAA=</HashCode>
+      <FileName>Classes\StudioOverview.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Listed.BLL.DTOs.AnimeDTO" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\AnimeDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Listed.BLL.DTOs.AnimeOverviewDTO" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAIAAAAAAAAQAAAAAAAAAgAAAAAAAAAAQAA=</HashCode>
+      <FileName>DTOs\AnimeOverviewDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Listed.BLL.DTOs.ListDTO" Collapsed="true">
+    <Position X="5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>DTOs\ListDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Listed.BLL.DTOs.ListOverviewDTO" Collapsed="true">
+    <Position X="1.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAEAAAAAAAAAAAQAAAAAAAAAgAAAAAEAAACAAA=</HashCode>
+      <FileName>DTOs\ListOverviewDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Listed.BLL.DTOs.StudioDTO" Collapsed="true">
+    <Position X="6.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>DTOs\StudioDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Listed.BLL.DTOs.StudioOverviewDTO" Collapsed="true">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>DTOs\StudioOverviewDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Listed.BLL.Services.AnimeService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\AnimeService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Listed.BLL.Services.ListService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAEAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ListService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Listed.BLL.Services.StudioService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAgAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\StudioService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Listed.BLL.Interfaces.IAnime" Collapsed="true">
+    <Position X="1.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAnime.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Listed.BLL.Interfaces.IAnimeService" Collapsed="true">
+    <Position X="3.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAnimeService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Listed.BLL.Interfaces.IList" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAACAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IList.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Listed.BLL.Interfaces.IListService" Collapsed="true">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IListService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Listed.BLL.Interfaces.IStudio" Collapsed="true">
+    <Position X="1.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IStudio.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Listed.BLL.Interfaces.IStudioService" Collapsed="true">
+    <Position X="3.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IStudioService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
