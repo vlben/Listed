@@ -29,6 +29,11 @@ namespace Listed.BLL.Classes
 
 		public StudioOverview(StudioOverviewDTO studioOverviewDTO)
 		{
+			if (studioOverviewDTO == null)
+			{
+				throw new NullReferenceException("StudioOverviewDTO needs to be filled");
+			}
+
 			this.studioName = studioOverviewDTO.StudioName;
 			this.animeId = studioOverviewDTO.AnimeId;
 			this.animeCoverArt = studioOverviewDTO.AnimeCoverArt;

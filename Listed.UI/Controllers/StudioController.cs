@@ -33,13 +33,13 @@ namespace Listed.UI.Controllers
 			}
 		}
 
-		public IActionResult Studio(int studioId)
+		public IActionResult Details(int id)
 		{
 			try
 			{
 				List<StudioOverviewModel> studioOverviewModels = new();
 
-				foreach (var studio in studioService.GetStudioById(studioId))
+				foreach (var studio in studioService.GetStudioById(id))
 				{
 					studioOverviewModels.Add(new StudioOverviewModel(studio));
 				}

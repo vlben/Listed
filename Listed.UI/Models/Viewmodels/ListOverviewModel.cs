@@ -12,6 +12,7 @@ namespace Listed.UI.Models.Viewmodels
 		public int? UserRating { get; set; }
 		public string Status { get; set; } = string.Empty;
 
+
 		public ListOverviewModel(ListOverview listOverview)
 		{
 			ListItemId = listOverview.ListItemId;

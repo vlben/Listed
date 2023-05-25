@@ -20,7 +20,7 @@
 				@studio.StudioId
 			</th>
 			<td>
-				<a asp-action="Studio" asp-route-studioId="@studio.StudioId">
+				<a asp-controller="Studio" asp-action="Details" asp-route-id="@studio.StudioId">
 					@studio.StudioName
 				</a>
 			</td>

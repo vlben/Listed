@@ -7,7 +7,7 @@
 
 		var imgsrc = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(studio.AnimeCoverArt));
 
-		<a asp-controller="Anime" asp-action="Anime" asp-route-animeId="@studio.AnimeId">
+		<a asp-controller="Anime" asp-action="Details" asp-route-id="@studio.AnimeId">
 			<img src="@imgsrc" class="rounded" style="height: 300px; width: 200px; margin-bottom:5px;" />
 		</a>
 	}

@@ -20,6 +20,11 @@ namespace Listed.BLL.Classes
 
 		public Studio(StudioDTO studioDTO)
 		{
+			if (studioDTO == null)
+			{
+				throw new NullReferenceException("StudioDTO needs to be filled");
+			}
+
 			this.studioId = studioDTO.StudioId;
 			this.studioName = studioDTO.StudioName;
 		}

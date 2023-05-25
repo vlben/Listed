@@ -23,9 +23,11 @@
 
 				<h5>Status: </h5>
 				<h6 class="text-capitalize fw-bold">@listItem.Status</h6>
+				<a asp-controller="List" asp-action="Edit" asp-route-id="@listItem.ListItemId">
+					<input type="submit" class="btn btn-primary" value="Edit"/>
+				</a>
 
-				<button class="btn btn-primary">Edit</button>
-				<a asp-controller="List" asp-action="DeleteListItem" asp-route-listItemId="@listItem.ListItemId">
+				<a asp-controller="List" asp-action="DeleteListItem" asp-route-id="@listItem.ListItemId">
 					<input type="submit" class="btn btn-danger" value="Delete" />
 				</a>
 			</div>

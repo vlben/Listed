@@ -33,13 +33,13 @@ namespace Listed.UI.Controllers
 			}
 		}
 
-		public IActionResult Anime(int animeId)
+		public IActionResult Details(int id)
 		{
 			try
 			{
 				List<AnimeOverviewModel> animeOverViewmodels = new();
 
-				foreach (var anime in animeService.GetAnimeById(animeId))
+				foreach (var anime in animeService.GetAnimeById(id))
 				{
 					animeOverViewmodels.Add(new AnimeOverviewModel(anime));
 				}
@@ -53,9 +53,9 @@ namespace Listed.UI.Controllers
 			}
 		}
 
-		public IActionResult AddAnimeToList(int animeId)
+		public IActionResult AddAnimeToList(int id)
 		{
-			animeService.AddAnimeToList(animeId);
+			animeService.AddAnimeToList(id);
 			return RedirectToAction("Index", "List");
 		}
 	}

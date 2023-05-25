@@ -54,15 +54,22 @@ namespace Listed.BLL.Classes
 			get { return status; }
 		}
 
+		/*
 		private enum ItemStatus
 		{
 			AddedToList = 0,
 			Watching = 1,
 			Completed = 2
 		}
+		*/
 
 		public ListOverview(ListOverviewDTO listOverviewDTO)
 		{
+			if (listOverviewDTO == null)
+			{
+				throw new NullReferenceException("ListOverviewDTO needs to be filled");
+			}
+
 			this.listItemId = listOverviewDTO.ListItemId;
 			this.animeCoverArt = listOverviewDTO.AnimeCoverArt;
 			this.animeName = listOverviewDTO.AnimeName;

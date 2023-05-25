@@ -16,7 +16,7 @@ namespace Listed.DAL
 				DbConnection.Open();
 				try
 				{
-					sqlCommand.ExecuteScalar();
+					sqlCommand.ExecuteNonQuery();
 				}
 				catch (MySqlException exception)
 				{
@@ -109,6 +109,32 @@ namespace Listed.DAL
 				}
 			}
 			return listItems;
+		}
+
+		public void UpdateListItem(int listItemId, UpdateListItemDTO updateListItemDTO)
+		{
+			string sqlQuery = "UPDATE list SET episodes_watched=@animeEpisodes, user_rating=@userRating WHERE list_item_id=@animeId;";
+
+			using (MySqlCommand sqlCommand = new(sqlQuery, DbConnection))
+			{
+				sqlCommand.Parameters.AddWithValue("@animeId", listItemId);
+				sqlCommand.Parameters.AddWithValue("@animeEpisodes", updateListItemDTO.AnimeEpisodes);
+				sqlCommand.Parameters.AddWithValue("@animeRating", updateListItemDTO.AnimeRating);
+				sqlCommand.Parameters.AddWithValue("@animeStatus", updateListItemDTO.AnimeStatus);
+				DbConnection.Open();
+				try
+				{
+					sqlCommand.ExecuteNonQuery();
+				}
+				catch (MySqlException exception)
+				{
+					throw new Exception("Can't connect to database, contact administrator", exception);
+				}
+				finally
+				{
+					DbConnection.Close();
+				}
+			}
 		}
 	}
 }

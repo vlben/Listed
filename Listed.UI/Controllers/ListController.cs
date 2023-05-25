@@ -4,59 +4,72 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Listed.UI.Controllers
 {
-    public class ListController : Controller
-    {
-        readonly IListService listService;
+	public class ListController : Controller
+	{
+		readonly IListService listService;
 
-        public ListController(IListService listService)
-        {
-            this.listService = listService;
-        }
+		public ListController(IListService listService)
+		{
+			this.listService = listService;
+		}
 
-        public IActionResult Index()
-        {
-            try
-            {
-                List<ListViewmodel> listViewmodels = new();
+		public IActionResult Index()
+		{
+			try
+			{
+				List<ListViewmodel> listViewmodels = new();
 
-                foreach (var listItem in listService.GetListItems())
-                {
-                    listViewmodels.Add(new ListViewmodel(listItem));
-                }
+				foreach (var listItem in listService.GetListItems())
+				{
+					listViewmodels.Add(new ListViewmodel(listItem));
+				}
 
-                return View(listViewmodels);
-            }
+				return View(listViewmodels);
+			}
 
-            catch (Exception exception)
-            {
-                return View(exception);
-            }
-        }
+			catch (Exception exception)
+			{
+				return Content(exception.ToString());
+			}
+		}
 
-        public IActionResult Details(int listItemId)
-        {
-            try
-            {
-                List<ListOverviewModel> listOverviewModels = new();
+		public IActionResult Details(int id)
+		{
+			try
+			{
+				List<ListOverviewModel> listOverviewModels = new();
 
-                foreach (var listItem in listService.GetListItemsById(listItemId))
-                {
-                    listOverviewModels.Add(new ListOverviewModel(listItem));
-                }
+				foreach (var listItem in listService.GetListItemsById(id))
+				{
+					listOverviewModels.Add(new ListOverviewModel(listItem));
+				}
 
-                return View(listOverviewModels);
-            }
+				return View(listOverviewModels);
+			}
 
-            catch (Exception exception)
-            {
-                return View(exception);
-            }
-        }
+			catch (Exception exception)
+			{
+				return Content(exception.ToString());
+			}
+		}
 
-        public IActionResult DeleteListItem(int listItemId)
-        {
-            listService.DeleteListItem(listItemId);
-            return RedirectToAction("Index");
-        }
-    }
+		public IActionResult Edit(int id)
+		{
+			try
+			{
+				return View();
+			}
+
+			catch (Exception exception)
+			{
+				return Content(exception.ToString());
+			}
+		}
+
+		public IActionResult DeleteListItem(int id)
+		{
+			listService.DeleteListItem(id);
+			return RedirectToAction("Index");
+		}
+	}
 }

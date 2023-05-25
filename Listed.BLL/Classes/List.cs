@@ -27,6 +27,11 @@ namespace Listed.BLL.Classes
 
 		public List(ListDTO listDTO)
 		{
+			if (listDTO == null)
+			{
+				throw new NullReferenceException("ListDTO needs to be filled");
+			}
+
 			this.listItemId = listDTO.ListItemId;
 			this.status = listDTO.Status;
 			this.animeCoverArt = listDTO.AnimeCoverArt;

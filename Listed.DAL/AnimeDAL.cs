@@ -17,7 +17,43 @@ namespace Listed.DAL
 				DbConnection.Open();
 				try
 				{
-					sqlCommand.ExecuteScalar();
+					sqlCommand.ExecuteNonQuery();
+				}
+
+				catch (MySqlException exception)
+				{
+					throw new Exception("Can't connect to database, contact administrator", exception);
+				}
+
+				finally
+				{
+					DbConnection.Close();
+				}
+			}
+		}
+
+		public bool AnimeExistsInList(int animeId)
+		{
+			string sqlQuery = "SELECT list_item_id FROM listed_db.list WHERE anime_id = @animeId && user_id = @userId;";
+
+			using (MySqlCommand sqlCommand = new(sqlQuery, DbConnection))
+			{
+				sqlCommand.Parameters.AddWithValue("@userId", 1);
+				sqlCommand.Parameters.AddWithValue("@animeId", animeId);
+				DbConnection.Open();
+				try
+				{
+					int DoesAnimeExist = Convert.ToInt32(sqlCommand.ExecuteScalar());
+
+					if (DoesAnimeExist == 0)
+					{
+						return false;
+					}
+
+					else
+					{
+						return true;
+					}
 				}
 
 				catch (MySqlException exception)
@@ -63,6 +99,7 @@ namespace Listed.DAL
 
 				catch (MySqlException exception)
 				{
+					//TODO Custom exception, en logging
 					throw new Exception("Can't connect to database, contact administrator", exception);
 				}
 

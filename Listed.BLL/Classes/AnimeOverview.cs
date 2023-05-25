@@ -50,6 +50,11 @@ namespace Listed.BLL.Classes
 
 		public AnimeOverview(AnimeOverviewDTO animeOverviewDTO)
 		{
+			if (animeOverviewDTO == null)
+			{
+				throw new NullReferenceException("AnimeOverviewDTO needs to be filled");
+			}
+
 			this.animeId = animeOverviewDTO.AnimeId;
 			this.animeName = animeOverviewDTO.AnimeName;
 			this.animeEpisodes = animeOverviewDTO.AnimeEpisodes;

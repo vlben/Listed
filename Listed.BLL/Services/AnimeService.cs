@@ -57,7 +57,24 @@ namespace Listed.BLL.Services
 
 		public void AddAnimeToList(int animeId)
 		{
-			iAnime.AddAnimeToList(animeId);
+			try
+			{
+				bool DoesAnimeExists = iAnime.AnimeExistsInList(animeId);
+
+				if (DoesAnimeExists == false)
+				{
+					iAnime.AddAnimeToList(animeId);
+				}
+
+				else
+				{
+					throw new Exception("Anime already exists in list");
+				}
+			}
+			catch (Exception exception)
+			{
+				throw new Exception("Couldn't add anime to list", exception);
+			}
 		}
 	}
 }

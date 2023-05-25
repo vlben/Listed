@@ -7,5 +7,7 @@ namespace Listed.BLL.Interfaces
 		List<AnimeDTO> GetAnimes();
 		List<AnimeOverviewDTO> GetAnimeById(int animeId);
 		public void AddAnimeToList(int animeId);
+		public bool AnimeExistsInList(int animeId);
+
 	}
 }
