@@ -1,21 +1,37 @@
-﻿<div class="container">
+﻿@model Listed.UI.Models.Viewmodels.EditListVewmodel
 
+<div class="container">
+	<form asp-action="PostFormData">
 
-	<form>
 		<div class="form-group">
 			<label for="inputEpisodes">Episodes</label>
-			<input type="text" class="form-control" id="inputEpisodes" placeholder="0">
+			<input type="text" asp-for="@Model.EpisodesWatched" class="form-control" id="inputEpisodes" placeholder="@Model.EpisodesWatched">
 		</div>
 		<div class="form-group">
 			<label for="inputRating">Rating</label>
-			<input type="text" class="form-control" id="inputRating" placeholder="0">
+			<input type="text" asp-for="@Model.UserRating" class="form-control" id="inputRating" placeholder="@Model.UserRating">
 			<small class="form-text text-muted">Rating should be between 1 - 10</small>
 		</div>
 		<div class="form-group">
 			<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-				<option selected>Planning</option>
-				<option value="2">Watching</option>
-				<option value="3">Completed</option>
+				@if (Model.Status == "Planning")
+				{
+					<option asp-for="@Model.Status" value="1" selected>Planning</option>
+					<option asp-for="@Model.Status" value="2">Watching</option>
+					<option asp-for="@Model.Status" value="3">Completed</option>
+				}
+				else if (Model.Status == "Watching")
+				{
+					<option asp-for="@Model.Status" value="1">Planning</option>
+					<option asp-for="@Model.Status" value="2" selected>Watching</option>
+					<option asp-for="@Model.Status" value="3">Completed</option>
+				}
+				else
+				{
+					<option asp-for="@Model.Status" value="1">Planning</option>
+					<option asp-for="@Model.Status" value="2">Watching</option>
+					<option asp-for="@Model.Status" value="3" selected>Completed</option>
+				}
 			</select>
 		</div>
 

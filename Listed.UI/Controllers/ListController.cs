@@ -37,12 +37,8 @@ namespace Listed.UI.Controllers
 		{
 			try
 			{
-				List<ListOverviewModel> listOverviewModels = new();
-
-				foreach (var listItem in listService.GetListItemsById(id))
-				{
-					listOverviewModels.Add(new ListOverviewModel(listItem));
-				}
+				var result = listService.GetListItemById(id);
+				ListOverviewModel listOverviewModels = new(result);
 
 				return View(listOverviewModels);
 			}
@@ -57,13 +53,29 @@ namespace Listed.UI.Controllers
 		{
 			try
 			{
-				return View();
+				var item = listService.GetListItemById(id);
+
+				EditListVewmodel editListVewmodel = new(item);
+
+				return View(editListVewmodel);
 			}
 
 			catch (Exception exception)
 			{
 				return Content(exception.ToString());
 			}
+		}
+
+		[HttpPost]
+		public IActionResult PostFormData(EditListVewmodel model)
+		{
+			/*
+			listService.UpdateListItem(editListVewmodel.Id, editListVewmodel);
+
+			return RedirectToAction(Edit(editListVewmodel.Id));
+			*/
+
+			return RedirectToAction("Index");
 		}
 
 		public IActionResult DeleteListItem(int id)

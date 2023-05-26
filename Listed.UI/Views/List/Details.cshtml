@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Listed.UI.Models.Viewmodels.ListOverviewModel>
+﻿@model Listed.UI.Models.Viewmodels.ListOverviewModel
 
 <div class="container">
-	@foreach (var listItem in Model)
-	{
-		ViewData["Title"] = listItem.AnimeName;
-		var imgsrc = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(listItem.AnimeCoverArt));
+	@{
+		ViewData["Title"] = Model.AnimeName;
+		var imgsrc = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(Model.AnimeCoverArt));
+	}
 
 
 		<div class="row">
@@ -14,25 +14,24 @@
 			</div>
 
 			<div class="col">
-				<h1>@listItem.AnimeName</h1>
+				<h1>@Model.AnimeName</h1>
 				<h5>Episodes watched: </h5>
-				<h6>@listItem.EpisodesWatched / @listItem.AnimeEpisodes</h6>
+				<h6>@Model.EpisodesWatched / @Model.AnimeEpisodes</h6>
 
 				<h5>User rating: </h5>
-				<h6>@listItem.UserRating / 10</h6>
+				<h6>@Model.UserRating / 10</h6>
 
 				<h5>Status: </h5>
-				<h6 class="text-capitalize fw-bold">@listItem.Status</h6>
-				<a asp-controller="List" asp-action="Edit" asp-route-id="@listItem.ListItemId">
+				<h6 class="text-capitalize fw-bold">@Model.Status</h6>
+				<a asp-controller="List" asp-action="Edit" asp-route-id="@Model.ListItemId">
 					<input type="submit" class="btn btn-primary" value="Edit"/>
 				</a>
 
-				<a asp-controller="List" asp-action="DeleteListItem" asp-route-id="@listItem.ListItemId">
+				<a asp-controller="List" asp-action="DeleteListItem" asp-route-id="@Model.ListItemId">
 					<input type="submit" class="btn btn-danger" value="Delete" />
 				</a>
 			</div>
 		</div>
-	}
 
 
 	<a asp-controller="List" asp-action="Index">
