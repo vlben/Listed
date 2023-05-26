@@ -29,7 +29,7 @@ namespace Listed.UI.Controllers
 
 			catch (Exception exception)
 			{
-				return View(exception);
+				return Content($"{exception.Message}");
 			}
 		}
 
@@ -49,7 +49,7 @@ namespace Listed.UI.Controllers
 
 			catch (Exception exception)
 			{
-				return View(exception);
+				return Content($"{exception.Message}");
 			}
 		}
 	}

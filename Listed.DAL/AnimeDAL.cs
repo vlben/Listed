@@ -68,9 +68,9 @@ namespace Listed.DAL
 			}
 		}
 
-		public List<AnimeOverviewDTO> GetAnimeById(int animeId)
+		public AnimeOverviewDTO GetAnimeById(int animeId)
 		{
-			List<AnimeOverviewDTO> animeOverviews = new();
+			AnimeOverviewDTO animeOverviewDTO = new();
 			string sqlQuery = "SELECT anime_id, anime_name, anime_episodes, anime_cover_art, anime.studio_id, studio_name FROM anime INNER JOIN studio ON anime.studio_id = studio.studio_id WHERE anime_id = @animeId;";
 
 			using (MySqlCommand sqlCommand = new(sqlQuery, DbConnection))
@@ -81,9 +81,9 @@ namespace Listed.DAL
 				{
 					MySqlDataReader reader = sqlCommand.ExecuteReader();
 
-					while (reader.Read())
+					if (reader.Read())
 					{
-						animeOverviews.Add(new AnimeOverviewDTO
+						animeOverviewDTO = new AnimeOverviewDTO
 						{
 							AnimeId = Convert.ToInt32(reader["anime_id"]),
 							AnimeEpisodes = Convert.ToInt32(reader["anime_episodes"]),
@@ -91,7 +91,7 @@ namespace Listed.DAL
 							StudioName = reader["studio_name"].ToString(),
 							AnimeName = reader["anime_name"].ToString(),
 							AnimeCoverArt = (byte[])reader["anime_cover_art"],
-						});
+						};
 					}
 
 					reader.Close();
@@ -108,10 +108,10 @@ namespace Listed.DAL
 					DbConnection.Close();
 				}
 			}
-			return animeOverviews;
+			return animeOverviewDTO;
 		}
 
-		public List<AnimeDTO> GetAnimes()
+		public List<AnimeDTO> GetAllAnimes()
 		{
 			List<AnimeDTO> animes = new();
 			string sqlQuery = "SELECT anime_id, anime_cover_art FROM anime;";

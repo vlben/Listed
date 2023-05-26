@@ -113,7 +113,7 @@ namespace Listed.DAL
 
         public void UpdateListItem(int listItemId, UpdateListItemDTO updateListItemDTO)
         {
-            string sqlQuery = "UPDATE list SET episodes_watched=@animeEpisodes, user_rating=@userRating WHERE list_item_id=@animeId;";
+            string sqlQuery = "UPDATE list SET episodes_watched = @animeEpisodes, user_rating = @animeRating, status = @animeStatus WHERE list_item_id = @animeId;";
 
             using (MySqlCommand sqlCommand = new(sqlQuery, DbConnection))
             {
@@ -136,5 +136,31 @@ namespace Listed.DAL
                 }
             }
         }
-    }
+
+		public int GetListItemEpisodes(int listItemId)
+		{
+            int amountOfEpisodes;
+			string sqlQuery = "SELECT anime_episodes FROM list INNER JOIN anime ON list.anime_id = anime.anime_id WHERE list_item_id = @animeId;";
+
+			using (MySqlCommand sqlCommand = new(sqlQuery, DbConnection))
+			{
+				sqlCommand.Parameters.AddWithValue("@animeId", listItemId);
+				DbConnection.Open();
+				try
+				{
+					amountOfEpisodes = (int)sqlCommand.ExecuteScalar();
+				}
+				catch (MySqlException exception)
+				{
+					throw new Exception("Can't connect to database, contact administrator", exception);
+				}
+				finally
+				{
+					DbConnection.Close();
+				}
+			}
+
+            return amountOfEpisodes;
+		}
+	}
 }

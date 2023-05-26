@@ -1,11 +1,13 @@
 ﻿@model Listed.UI.Models.Viewmodels.EditListVewmodel
 
 <div class="container">
-	<form asp-action="PostFormData">
+	<h4>@Model.AnimeName</h4>
 
+	<form asp-action="PostFormData" asp-route-id="@Model.ListItemId">
 		<div class="form-group">
 			<label for="inputEpisodes">Episodes</label>
 			<input type="text" asp-for="@Model.EpisodesWatched" class="form-control" id="inputEpisodes" placeholder="@Model.EpisodesWatched">
+			<small class="form-text text-muted">You have seen @Model.EpisodesWatched - @Model.MAX_EPISODES</small>
 		</div>
 		<div class="form-group">
 			<label for="inputRating">Rating</label>
@@ -13,24 +15,24 @@
 			<small class="form-text text-muted">Rating should be between 1 - 10</small>
 		</div>
 		<div class="form-group">
-			<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-				@if (Model.Status == "Planning")
+			<select asp-for="@Model.Status" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+				@if (Model.Status == "")
 				{
-					<option asp-for="@Model.Status" value="1" selected>Planning</option>
-					<option asp-for="@Model.Status" value="2">Watching</option>
-					<option asp-for="@Model.Status" value="3">Completed</option>
+					<option value="" selected>Planning</option>
+					<option value="watching">Watching</option>
+					<option value="completed">Completed</option>
 				}
-				else if (Model.Status == "Watching")
+				else if (Model.Status == "watching")
 				{
-					<option asp-for="@Model.Status" value="1">Planning</option>
-					<option asp-for="@Model.Status" value="2" selected>Watching</option>
-					<option asp-for="@Model.Status" value="3">Completed</option>
+					<option value="">Planning</option>
+					<option value="watching" selected>Watching</option>
+					<option value="completed">Completed</option>
 				}
 				else
 				{
-					<option asp-for="@Model.Status" value="1">Planning</option>
-					<option asp-for="@Model.Status" value="2">Watching</option>
-					<option asp-for="@Model.Status" value="3" selected>Completed</option>
+					<option value="">Planning</option>
+					<option value="watching">Watching</option>
+					<option value="completed" selected>Completed</option>
 				}
 			</select>
 		</div>
@@ -39,6 +41,6 @@
 	</form>
 
 	<a asp-controller="List" asp-action="Index">
-		<input type="submit" value="Return" class="btn btn-primary" />
+		<input type="submit" value="Return" class="btn btn-danger" />
 	</a>
 </div>

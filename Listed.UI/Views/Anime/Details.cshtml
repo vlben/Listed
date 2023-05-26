@@ -1,11 +1,12 @@
-﻿@model IEnumerable<Listed.UI.Models.Viewmodels.AnimeOverviewModel>
+﻿@model Listed.UI.Models.Viewmodels.AnimeOverviewModel
 
 <div class="container">
-	@foreach (var anime in @Model)
-	{
-		ViewData["Title"] = anime.AnimeName;
+	@{
 
-		var imgsrc = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(anime.AnimeCoverArt));
+		ViewData["Title"] = Model.AnimeName;
+
+		var imgsrc = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(Model.AnimeCoverArt));
+	}
 
 		<div class="row">
 			<div class="col">
@@ -14,14 +15,14 @@
 			</div>
 
 			<div class="col">
-				<h1>@anime.AnimeName</h1>
+				<h1>@Model.AnimeName</h1>
 				<h5>Episodes: </h5>
-				<h6>@anime.AnimeEpisodes</h6>
+			<h6>@Model.AnimeEpisodes</h6>
 
 				<h5>Studio: </h5>
-				<a asp-controller="Studio" asp-action="Details" asp-route-id="@anime.StudioId"><h6>@anime.StudioName</h6></a>
+			<a asp-controller="Studio" asp-action="Details" asp-route-id="@Model.StudioId"><h6>@Model.StudioName</h6></a>
 
-				<a asp-controller="Anime" asp-action="AddAnimeToList" asp-route-id="@anime.AnimeId">
+			<a asp-controller="Anime" asp-action="AddAnimeToList" asp-route-id="@Model.AnimeId">
 					<input type="submit" class="btn btn-primary" value="Add to list" />
 				</a>
 

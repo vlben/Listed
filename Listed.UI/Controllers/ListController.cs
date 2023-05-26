@@ -1,6 +1,9 @@
-﻿using Listed.BLL.Interfaces;
+﻿using Listed.BLL.Classes;
+using Listed.BLL.DTOs;
+using Listed.BLL.Interfaces;
 using Listed.UI.Models.Viewmodels;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Listed.UI.Controllers
 {
@@ -37,15 +40,15 @@ namespace Listed.UI.Controllers
 		{
 			try
 			{
-				var result = listService.GetListItemById(id);
-				ListOverviewModel listOverviewModels = new(result);
+				var listItemDetails = listService.GetListItemById(id);
+				ListOverviewModel listOverviewModels = new(listItemDetails);
 
 				return View(listOverviewModels);
 			}
 
 			catch (Exception exception)
 			{
-				return Content(exception.ToString());
+				return Content($"{exception.Message}");
 			}
 		}
 
@@ -53,35 +56,53 @@ namespace Listed.UI.Controllers
 		{
 			try
 			{
-				var item = listService.GetListItemById(id);
+				var listItem = listService.GetListItemById(id);
+				int MAX_EPISODES = listService.GetListItemEpisodes(id);
 
-				EditListVewmodel editListVewmodel = new(item);
+				EditListVewmodel editListVewmodel = new(listItem, MAX_EPISODES);
 
 				return View(editListVewmodel);
 			}
 
 			catch (Exception exception)
 			{
-				return Content(exception.ToString());
+				return Content($"{exception.Message}");
 			}
 		}
 
 		[HttpPost]
-		public IActionResult PostFormData(EditListVewmodel model)
+		public IActionResult PostFormData(int id, UpdateListItemViewmodel updateListItemViewmodel)
 		{
-			/*
-			listService.UpdateListItem(editListVewmodel.Id, editListVewmodel);
+			try
+			{
+				UpdateListItemDTO updateListItemDTO = new UpdateListItemDTO()
+				{
+					AnimeEpisodes = updateListItemViewmodel.EpisodesWatched,
+					AnimeRating = updateListItemViewmodel.UserRating,
+					AnimeStatus = updateListItemViewmodel.Status
+				};
 
-			return RedirectToAction(Edit(editListVewmodel.Id));
-			*/
+				listService.UpdateListItem(id, updateListItemDTO);
 
-			return RedirectToAction("Index");
+				return RedirectToAction("Index");
+			}
+			catch (Exception exception)
+			{
+				return Content($"{exception.InnerException}");
+			}
 		}
 
 		public IActionResult DeleteListItem(int id)
 		{
-			listService.DeleteListItem(id);
-			return RedirectToAction("Index");
+			try
+			{
+				listService.DeleteListItem(id);
+				return RedirectToAction("Index");
+			}
+			catch (Exception exception)
+			{
+				return Content($"{exception.Message}");
+			}
 		}
 	}
 }

@@ -66,9 +66,25 @@ namespace Listed.BLL.Services
 
         public void UpdateListItem(int listItemId, UpdateListItemDTO updateListItemDTO)
         {
+			int MIN_EPISODES = 0;
+			int MAX_EPISODES = GetListItemEpisodes(listItemId);
+
+			int MIN_RATING = 0;
+            int MAX_RATING = 10;
+
             try
             {
-                iList.UpdateListItem(listItemId, updateListItemDTO);
+                if (!(updateListItemDTO.AnimeEpisodes >= MIN_EPISODES && updateListItemDTO.AnimeEpisodes <= MAX_EPISODES))
+                {
+                    throw new Exception($"Episodes should be between {MIN_EPISODES} - {MAX_EPISODES}");
+                }
+
+				if (!(updateListItemDTO.AnimeRating >= MIN_RATING && updateListItemDTO.AnimeRating <= MAX_RATING))
+				{
+					throw new Exception($"Rating should be between {MIN_RATING} - {MAX_RATING}");
+				}
+
+				iList.UpdateListItem(listItemId, updateListItemDTO);
             }
             catch (Exception exception)
             {
@@ -76,5 +92,21 @@ namespace Listed.BLL.Services
                 throw new Exception("Could't update anime", exception);
             }
         }
-    }
+
+		public int GetListItemEpisodes(int listItemId)
+		{
+            int MAX_EPISODES;
+
+			try
+			{
+				MAX_EPISODES = iList.GetListItemEpisodes(listItemId);
+			}
+			catch (Exception exception)
+			{
+				throw new Exception("Could't delete anime from list", exception);
+			}
+
+            return MAX_EPISODES;
+		}
+	}
 }

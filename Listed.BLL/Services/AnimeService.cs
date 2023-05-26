@@ -19,7 +19,7 @@ namespace Listed.BLL.Services
 
 			try
 			{
-				List<AnimeDTO> animeDTOs = iAnime.GetAnimes();
+				List<AnimeDTO> animeDTOs = iAnime.GetAllAnimes();
 				foreach (AnimeDTO animeDTO in animeDTOs)
 				{
 					animes.Add(new Anime(animeDTO));
@@ -34,17 +34,13 @@ namespace Listed.BLL.Services
 			return animes;
 		}
 
-		public List<AnimeOverview> GetAnimeById(int animeId)
+		public AnimeOverview GetAnimeById(int animeId)
 		{
-			List<AnimeOverview> animes = new();
+			AnimeOverviewDTO animeOverviewDTO = new();
 
 			try
 			{
-				List<AnimeOverviewDTO> animeOverviewDTOs = iAnime.GetAnimeById(animeId);
-				foreach (AnimeOverviewDTO animeOverviewDTO in animeOverviewDTOs)
-				{
-					animes.Add(new AnimeOverview(animeOverviewDTO));
-				}
+				animeOverviewDTO = iAnime.GetAnimeById(animeId);
 			}
 
 			catch (Exception exception)
@@ -52,7 +48,7 @@ namespace Listed.BLL.Services
 				throw new Exception("Can't add animes to collection", exception);
 			}
 
-			return animes;
+			return new AnimeOverview(animeOverviewDTO);
 		}
 
 		public void AddAnimeToList(int animeId)

@@ -1,4 +1,5 @@
 ﻿using Listed.BLL.Interfaces;
+using Listed.BLL.Services;
 using Listed.UI.Models.Viewmodels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,7 +30,7 @@ namespace Listed.UI.Controllers
 
 			catch (Exception exception)
 			{
-				return View(exception);
+				return Content($"{exception.Message}");
 			}
 		}
 
@@ -37,26 +38,29 @@ namespace Listed.UI.Controllers
 		{
 			try
 			{
-				List<AnimeOverviewModel> animeOverViewmodels = new();
+				var animeDetails = animeService.GetAnimeById(id);
+				AnimeOverviewModel animeOverviewModel = new(animeDetails);
 
-				foreach (var anime in animeService.GetAnimeById(id))
-				{
-					animeOverViewmodels.Add(new AnimeOverviewModel(anime));
-				}
-
-				return View(animeOverViewmodels);
+				return View(animeOverviewModel);
 			}
 
 			catch (Exception exception)
 			{
-				return View(exception);
+				return Content($"{exception.Message}");
 			}
 		}
 
 		public IActionResult AddAnimeToList(int id)
 		{
-			animeService.AddAnimeToList(id);
-			return RedirectToAction("Index", "List");
+			try
+			{
+				animeService.AddAnimeToList(id);
+				return RedirectToAction("Index", "List");
+			}
+			catch (Exception exception)
+			{
+				return Content($"{exception.InnerException}");
+			}
 		}
 	}
 }

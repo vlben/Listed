@@ -9,5 +9,6 @@ namespace Listed.BLL.Interfaces
         ListOverview GetListItemById(int listItemId);
         public void DeleteListItem(int listItemId);
         public void UpdateListItem(int listItemId, UpdateListItemDTO updateListItemDTO);
-    }
+		public int GetListItemEpisodes(int listItemId);
+	}
 }
