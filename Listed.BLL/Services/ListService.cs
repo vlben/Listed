@@ -103,7 +103,7 @@ namespace Listed.BLL.Services
 			}
 			catch (Exception exception)
 			{
-				throw new Exception("Could't delete anime from list", exception);
+				throw new Exception("Couldn't get the amount of episodes for this list item", exception);
 			}
 
             return MAX_EPISODES;
