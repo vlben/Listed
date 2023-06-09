@@ -25,7 +25,6 @@ namespace Listed.BLL.Services
 					animes.Add(new Anime(animeDTO));
 				}
 			}
-
 			catch (Exception exception)
 			{
 				throw new Exception("Can't add animes to collection", exception);
@@ -42,7 +41,6 @@ namespace Listed.BLL.Services
 			{
 				animeOverviewDTO = iAnime.GetAnimeById(animeId);
 			}
-
 			catch (Exception exception)
 			{
 				throw new Exception("Can't add animes to collection", exception);
@@ -57,11 +55,10 @@ namespace Listed.BLL.Services
 			{
 				bool DoesAnimeExists = iAnime.AnimeExistsInList(animeId);
 
-				if (DoesAnimeExists == false)
+				if (!DoesAnimeExists)
 				{
 					iAnime.AddAnimeToList(animeId);
 				}
-
 				else
 				{
 					throw new Exception("Anime already exists in list");
